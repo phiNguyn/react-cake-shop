@@ -1,0 +1,178 @@
+:root{
+  --background:#ffffff;
+  --hover-text:#F5F5F7;
+  --text:#444444;
+  --primary-font:'Inter', sans-serif;
+  --secondary-font:'Dancing Script', cursive;
+  --btn-primary:var(--text) !important;
+  --header-main:3.25rem;
+  --header-slide: 2.75rem;
+}
+td{
+ height: 50px;
+ text-align: center;
+ width: fit-content;
+ font-weight: 300;
+}
+
+.margin-0px{
+  margin: 0;
+}
+.mb-0-5px{
+  margin-bottom: -0.5px;
+}
+.mt-1px{
+  margin-top: -1px;
+}
+.wrapper{
+    max-width: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+.container{
+    max-width: 1240px;
+    margin: 0 auto;
+}
+
+.bd-all{
+  border: 1px solid var(--text);
+}
+.bt{
+  border-top: 1px solid var(--text);
+}
+.bb{
+  border-bottom: 1px solid var(--text);
+
+}
+.bl{
+  border-left: 1px solid var(--text);
+
+}
+.br{
+  border-right: 1px solid var(--text);
+}
+.mt-4{
+ margin-top: 1rem;
+}
+.mt-6{
+  margin-top: 1.5rem;
+}
+.mr-4{
+  margin-right: 1rem;
+}
+.relative{
+  position: relative;
+}
+.absolute{
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  object-fit: cover;
+}
+.flex{
+  display: flex;
+}
+.flex-col{
+  display: flex;
+  flex-direction: column;
+}
+.flex-revertse{
+  flex-direction: row-reverse;
+}
+.grid-2{
+  display: grid;
+  grid-template-columns: repeat(2,minmax(0,1fr));
+}
+.grid-3{
+  display: grid;
+  grid-template-columns: repeat(3,minmax(0,1fr));
+}
+.grid-4{
+  display: grid;
+  grid-template-columns: repeat(4,minmax(0,1fr));
+}
+.pb-100{
+  padding-bottom: 100%;
+}
+.padding-all-2rem{
+  padding: 2rem !important;
+}
+
+.flex-jus-center{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10px;
+}
+.flex-center{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bt-100{
+  border-top:1px solid rgb(208 208 208)
+}
+
+.gap-50px{
+  gap: 50px;
+}
+.grid-70-30{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 70% 30% ;
+
+}
+.grid-60-30-gap{
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 30%;
+  gap: 10%;
+}
+
+.btn-icon{
+  background-color: black;
+  color: var(--background);
+  border: none;
+}
+.absolute-center{
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  width: 100%;
+  padding:0 1rem;
+}
+.absolute-bottom{
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+.text-center{
+  width: 100%;
+  display: flex;
+  align-items: center;
+    justify-content: center;
+}
+
+.btn-primary{
+  background-color: var(--btn-primary);
+  color: white;
+}
+.h-100vh{
+  height: 100vh;
+}
+.w-full{
+  width: 100%;
+}
+.w-fit-content{
+  width: fit-content;
+}
+
+

@@ -1,0 +1,106 @@
+.form {
+    --width-of-input: 100%;
+    --border-height: 1px;
+    --border-before-color: rgba(86, 86, 86, 0.39);
+    --border-after-color: #000000;
+    position: relative;
+    width: var(--width-of-input);
+   }
+
+   /* styling of Input */
+   .input {
+    color: #000000;
+    font-size: 0.9rem;
+    background-color: transparent;
+    width: 100%;
+    box-sizing: border-box;
+    padding-inline: 0.5em;
+    padding-block: 0.7em;
+    border: none;
+    border-bottom: var(--border-height) solid var(--border-before-color);
+   }
+   /* styling of animated border */
+   .input-border {
+    position: absolute;
+    background: var(--border-after-color);
+    width: 0%;
+    height: 2px;
+    bottom: 0px;
+    left: 0;
+    transition: 0.3s;
+   }
+   /* Hover on Input */
+  
+   
+   input:focus {
+    outline: none;
+   }
+   /* here is code of animated border */
+   input:focus ~ .input-border {
+    width: 100%;
+   }
+
+   select{
+    width: 100%;
+    padding: 10px;
+   }
+
+   /* phần sản phẩm liên quan swiper */
+   swiper-container {
+    cursor: grab;
+    margin: 0 auto;
+  width: 100%;
+  height: auto;
+  padding: 0 3rem; 
+  padding-bottom: 3rem;
+   
+    }
+    swiper-container a{
+        cursor: grab;
+    }
+
+    swiper-slide {
+      height: auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Phần login */
+    
+.login-box {
+  width: 400px;
+  padding: 40px;
+  margin : 0 auto;
+  background:var(--background-color);
+  box-sizing: border-box;
+  box-shadow: 0 15px 25px rgba(0,0,0,.6);
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.login-box h2 {
+  margin: 0 0 30px;
+  padding: 0;
+  color: var(--text);
+  text-align: center;
+}
+
+.icon {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+.icon-eye{
+  display: none;
+}
+.is-active{
+display: block;
+}
+
+input[type="radio"] {
+  background-color: var(--text);
+  color: #000000;
+}
