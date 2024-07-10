@@ -47,7 +47,7 @@ useEffect(() => {
           <>
           <Products/>
           <PageTitle title='Sản Phẩm '/>
-          </>e
+          </>
         }
         />
         <Route path='/products/:categoryId' element={
