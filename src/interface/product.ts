@@ -16,3 +16,11 @@ export interface Product {
 
 }
 
+
+export interface pagination{
+  countPro: number,
+  countPage: number,
+  currentPage: number,
+  limit: number
+}
+

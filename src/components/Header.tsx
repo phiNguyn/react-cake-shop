@@ -1,8 +1,21 @@
+
 import { Link } from "react-router-dom"
 import { DesktopMenu, MobileMenu } from './Menu/Menu';
+import SearchBar from "./SearchBar";
+import { useEffect, useState } from "react";
+import CheckLogin from "./auth/CheckLogin";
+import BasicMenu from "./Menu/BasicMenu";
+import { User } from "../interface/Users";
 const Header = () => {
-  
+  const [isLogin,setIsLogin] = useState<User| null>(null)
+      useEffect(() => {
+        const checkLogin = CheckLogin()
+        setIsLogin(checkLogin)
+        console.log(isLogin);
+        
+      },[])
 
+      
   return (
     <header className="header bt">
     <div className="header-main relative">
@@ -14,12 +27,20 @@ const Header = () => {
       <nav className="nav">
         
         <div className="menu" title="Điều hướng">
-          
+     
+    {!isLogin ? (
           <Link to="/sign-in"  className="menu-span">
             <span className=""><i className="fa-regular fa-user fa-xl"></i></span>
           
             <span  className="data-nameUser"  style={{marginLeft: "0.5rem", display: "inline"}}>Đăng nhập</span> 
           </Link>
+
+    ) : (
+     <BasicMenu name={isLogin.name}/>
+    )}
+       
+          
+      
           <MobileMenu />
         </div>
         
@@ -40,16 +61,7 @@ const Header = () => {
    
     <div className="slide grid-2 bt bb">
     <DesktopMenu/>
-   
-
-        <form  method="post" className="form-search">
-          <div className="form flex">
-            <input className="input" placeholder="Tìm kiếm ..."   type="text"/>
-            <span className="input-border"></span>
-            <button className="btn-search" type="submit"><i className="fa-solid fa-magnifying-glass"></i></button>
-          </div>
-        </form>
-       
+      <SearchBar/>   
     </div>
   </header>
   

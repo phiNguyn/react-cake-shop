@@ -1,121 +1,125 @@
-@media screen  and (max-width: 1024px) {
-   .order{
+@media screen and (max-width: 1024px) {
+  .order {
     display: none;
-   }
-   .banhSN-eat-name{
+  }
+  .banhSN-eat-name {
     font-size: 14px;
-}
-.banhSN-eat-more {
+  }
+  .banhSN-eat-more {
     padding: 0 18px 18px;
-  
- 
-}
-.add{
+  }
+  .add {
     padding: 8px 12px !important;
-}
+  }
 }
 @media screen and (max-width: 768px) {
-/* menu */ 
-.nav-menu{
+  /* menu */
+  .menu .mui-menu{
+    display: none
+  }
+  .nav-menu {
     display: flex;
-    
-
-}
-.nav-mb{
+  }
+  .nav-mb {
     display: block;
-}
-.menu-span {
+  }
+  .menu-span {
     display: none;
+  }
+
+  .slide {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  .slide-list {
+    display: none !important;
+  }
+
+  .form-search {
+    width: 100%;
+  }
+
+  /* home page section categories Home */
+  .product {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+
+  .product .product-item {
+    border-right: 0;
+    border-bottom: 1px solid black ;
 }
+.product .product-item:nth-child(3){
 
-    .slide{
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-        
-    }
-    .slide-list{
-        display: none !important;
-     }
+    border-bottom:0 ;
+}
+  /* home page section categories Home */
 
-     .form-search{
-        width: 100%;
-     }
-   
-    .about{
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-       
-    
-    }
-    .about-right{
-        padding-bottom: 100%;
-        border-top: 1px solid black;
-    }
-    .about-left{
-        border-right: 0 !important;
-    }
-    .banh-ngon-list{
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-    }
+  .about {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+  .about-right {
+    padding-bottom: 100%;
+    border-top: 1px solid black;
+  }
+  .about-left {
+    border-right: 0 !important;
+  }
+  .banh-ngon-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
 
-    .all-products-link a {
-        padding: 8px 12px;
-       
-    }
+  .all-products-link a {
+    padding: 8px 12px;
+  }
 
-    .footer-ul-list{
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-        gap: 20px;
+  .footer-ul-list {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+    gap: 20px;
+  }
+  .banhSN-eat {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  .banhSN-content_text {
+    font-size: 1rem;
+  }
+  .banhSN-eat-h2 {
+    font-size: 1rem;
+  }
+  .banhSN-eat-name {
+    font-size: 12px;
+  }
 
-    }
-    .banhSN-eat{
-        grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-        
-    }
-    .banhSN-content_text{
-        font-size: 1rem;
-    }
-    .banhSN-eat-h2{
-        font-size: 1rem;
-    }
-    .banhSN-eat-name{
-        font-size: 12px;
-    }
+  .banhSN-eat-more {
+    padding: 0 16px 16px;
+  }
 
-    .banhSN-eat-more {
-        padding: 0 16px 16px;
-      
-     
-    }
+  .detail {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+  .detail-left {
+    position: relative;
+    top: 0;
+    border-right: 0 !important;
+    height: 450px;
+  }
 
-    .detail{
-        grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
-    
-    }
-    .detail-left{
-        position:  relative;
-        top: 0;
-        border-right: 0 !important;
-        height: 450px;
-    }
+  .detai-right-btn {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    background: var(--background);
+    width: 100%;
+    z-index: 10;
+    padding: 10px;
+  }
 
-    .detai-right-btn{
-        position: fixed;
-        bottom: 0;
-        right: 0;
-        background:  var(--background);
-        width: 100%;
-        z-index: 10;
-        padding: 10px ;
-    }
+  /* loginPage */
+  .login-box {
+    max-width: 100%;
+  }
 
-    /* loginPage */
-    .login-box{
-        max-width: 100%;
-    }
-
-
-    /* btn thêm sp */
-    .add{
-        padding: 4px 6px !important;
-        font-size: 14px;
-    }
+  /* btn thêm sp */
+  .add {
+    padding: 4px 6px !important;
+    font-size: 14px;
+  }
 }

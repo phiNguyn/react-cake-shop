@@ -1,6 +1,7 @@
 import axios from "axios"
 
-const API_URL= "http://localhost:3000/products"
+const API_URL=  import.meta.env.VITE_API_URL+"/products"
+
 export const productsHotData = async () => {
 
   try {
@@ -12,9 +13,9 @@ export const productsHotData = async () => {
   }
 }
 
-export const ProductsList = async () => {
+export const ProductsList = async (page: number , limit: number,sortOrder: string) => {
   try {
-    const resp = await axios.get(`${API_URL}`)
+    const resp = await axios.get(`${API_URL}?page=${page}&limit=${limit}&sortOrder=${sortOrder}`);
     return resp
   } catch (error) {
     console.log(error);
@@ -22,13 +23,22 @@ export const ProductsList = async () => {
   }
 }
 
-export const getProductByCategoryId = async (id: string| undefined) => {
+export const getProductByCategoryId = async (id: string| undefined, page: number,limit: number,sortOrder: string) => {
   try {
-    const resp = await axios.get(`${API_URL}/cate/${id}`);
+    const resp = await axios.get(`${API_URL}/cate/${id}?page=${page}&limit=${limit}&sortOrder=${sortOrder}`);
     return resp
   } catch (error) {
     console.log(error);
     
+  }
+}
+
+export const getProductBySearch  = async (name: string | undefined) => {
+  try {
+    const resp = await axios.get(`${API_URL}/search?name=${name}`)
+    return resp
+  } catch (error) {
+    throw new Error
   }
 }
 

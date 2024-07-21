@@ -104,3 +104,16 @@ input[type="radio"] {
   background-color: var(--text);
   color: #000000;
 }
+
+small{
+    color: red;
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+}
+
+.password {
+   position: absolute;
+   right: 5px ;
+   cursor: pointer;
+}

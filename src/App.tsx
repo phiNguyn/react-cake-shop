@@ -18,6 +18,8 @@ import Footer from './components/Footer';
 import PageTitle from './components/PageTitle';
 import ProductDetail from './pages/ProductDetail';
 import Signin from './pages/Signin';
+import TestSwiper from './pages/TestSwipper';
+import SignupPage from './pages/SignupPage';
 
 
 
@@ -26,40 +28,51 @@ import Signin from './pages/Signin';
 
 
 function App() {
-const {pathname} = useLocation()
-useEffect(() => {
-  window.scrollTo(0, 0);
-}, [pathname]);
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="wrapper">
       <Header />
       <main>
-      <Routes>
-        <Route index path='/' element={
-          <>
-          <Home/>
-          <PageTitle title='Trang Chủ IPUN'/>
-          </>
+        <Routes>
+          <Route  path='/' element={
+            <>
+              <Home />
+              <PageTitle title='Trang Chủ IPUN' />
+            </>
           } />
-      
-        <Route path='/products' element={
-          <>
-          <Products/>
-          <PageTitle title='Sản Phẩm '/>
-          </>e
-        }
-        />
-        <Route path='/products/:categoryId' element={
-          <>
-          <Products/>
-          <PageTitle title='Sản Phẩm '/>
-          </>
-        }
-        />
-        <Route path='/product/:slug' element={<ProductDetail/>}/>
-        <Route path='/sign-in' element={<Signin/>}/>
-      </Routes>
+
+          <Route path='/products' element={
+            <>
+              <Products />
+              <PageTitle title='Sản Phẩm ' />
+            </>
+          }
+          />
+          {/* ROUTE PRODUCT BY CATEGORY_ID */}
+          <Route  path='/products/:categoryId' element={
+            <>
+              <Products />
+              <PageTitle title='Sản Phẩm' />
+            </>
+          }
+          />
+
+
+          <Route path='/product/:slug' element={
+            <>
+            <ProductDetail />
+            <PageTitle title='name' />
+
+            </>
+            } />
+          <Route path='/test' element={<TestSwiper />} />
+          <Route path='/sign-in' element={<Signin />} />
+          <Route path='/sign-up' element={<SignupPage />} />
+        </Routes>
       </main>
       <Footer />
     </div>
