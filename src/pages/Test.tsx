@@ -5,12 +5,12 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-import './style.css';
+import '../assets/swiper.css';
 
 // import required modules
 import { Pagination } from 'swiper/modules';
 
-export default function testSwiper() {
+export default function Test() {
   const pagination = {
     clickable: true,
     renderBullet: function (index: number, className: string) {

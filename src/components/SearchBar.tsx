@@ -85,7 +85,7 @@ const SearchBar = () => {
                     >
                         {pro.map((val) => (
                             <Link onClick={() => detail(val.slug)} to={`/product/${val.slug}`} key={val._id} className="bt bb"style={{padding: "10px", display: "flex", gap: "10px"}}>
-                               <div>  <img src={`http://localhost:3000/images/${val.img}`} width={50} alt={val.name} /></div>
+                               <div>  <img src={`${import.meta.env.VITE_API_IMAGES}/${val.img}`} width={50} alt={val.name} /></div>
                                
                                 <div style={{}}>
                 

@@ -1,7 +1,7 @@
 .spinner {
     --size-of-spinner: 50px;
     --spinner-border-width: 4px;
-    --spinner-color: #08c18a;
+    --spinner-color: black;
     --circle-color: #8bc34a24;
     --speed-of-animation: 2s;
     --scale: 1.3;

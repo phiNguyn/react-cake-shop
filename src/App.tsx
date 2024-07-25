@@ -18,8 +18,8 @@ import Footer from './components/Footer';
 import PageTitle from './components/PageTitle';
 import ProductDetail from './pages/ProductDetail';
 import Signin from './pages/Signin';
-import TestSwiper from './pages/TestSwipper';
 import SignupPage from './pages/SignupPage';
+import Cart from './pages/Cart';
 
 
 
@@ -69,9 +69,9 @@ function App() {
 
             </>
             } />
-          <Route path='/test' element={<TestSwiper />} />
           <Route path='/sign-in' element={<Signin />} />
           <Route path='/sign-up' element={<SignupPage />} />
+          <Route path='/cart' element={<Cart/>}/>
         </Routes>
       </main>
       <Footer />

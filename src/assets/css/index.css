@@ -529,9 +529,7 @@ footer {
   align-items: center !important;
   cursor: grab;
 }
-.detail-left-item:active{
-  cursor: grabbing;
-}
+
 .detail-left-item img {
   position: absolute !important;
   width: 100% !important;
@@ -549,43 +547,6 @@ footer {
   width: 100px;
   max-height: 100px;
   border-left: 1px solid var(--text);
-}
-
-
-/* custom swiper panigation */
-.swiper-pagination{
-    height: min-content !important;
-    width: fit-content !important;
-    display: inline-flex;
-    left: 50% !important;
-    bottom: 50px !important;
-    border: 1px  solid var(--text);
-    transform: translate(-50%,-50%) !important;
-    
-}
-.swiper-pagination .ipun-panigation{
-  width: 64px;
-  height: 64px;
-
-  border-radius: 0;
-}
-.swiper-pagination .ipun-panigation>div {
-  width: 64px;
-  height: 64px;
-  overflow: hidden;
-    position: relative;
-}
-
-.swiper-pagination img {
-  width: 100%;
-}
-
-.swiper-pagination-bullet{
-  background-color: transparent !important;
-
-}
-.swiper-pagination-bullet-active {
-  background-color: transparent !important;
 }
 
 .detai-right {

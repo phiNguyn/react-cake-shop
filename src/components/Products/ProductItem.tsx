@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom"
 import { Product } from '../../interface/product';
-const link = "http://localhost:3000/images"
+
+import ButtonAddCart from "../ui/ButtonAddCart";
+const link = import.meta.env.VITE_API_IMAGES
 
 
 const ProductItem = ({Product} : {Product: Product}) => {
@@ -21,7 +23,7 @@ const ProductItem = ({Product} : {Product: Product}) => {
           </div>
           <input type="hidden"/>
           <div className="banhSN-eat-more"><span>Xem thêm</span></div>
-          <button className="add-fast add btn-buy" >Thêm sản phẩm</button>
+        <ButtonAddCart Product={Product}/>
           </div>
   )
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, ChangeEvent } from "react";
 import Pagination from '@mui/material/Pagination';
 import { getProductByCategoryId, getProductBySearch, ProductsList } from "../data/ProductsData";
 import ProductItem from "../components/Products/ProductItem";
@@ -7,8 +7,10 @@ import { pagination, Product } from "../interface/product";
 import { Category } from "../interface/category";
 import SecTionCate from "../components/Products/SecTionCate";
 import ProductSort from '../components/Products/ProductSort';
+import Loading from "../common/Loader";
 
 const Products = () => {
+  const [isLoading, setIsLoading] =useState(true)
   const { categoryId } = useParams();
   const [searchParams] = useSearchParams();
   const q = searchParams.get("q");
@@ -28,7 +30,7 @@ const Products = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-
+      setIsLoading(true)
       try {
         let allProducts;
         if (categoryId) {
@@ -36,7 +38,7 @@ const Products = () => {
           setCate(allProducts?.data.category);
           setPagination(allProducts?.data.panigation)
           setProducts(allProducts?.data.pro)
-
+          
 
         } else if (q) {
           allProducts = await getProductBySearch(q);
@@ -56,11 +58,9 @@ const Products = () => {
       } catch (error) {
         console.error(error);
       }
+      setIsLoading(false)
     };
-
-
-
-
+    
 
     fetchProducts();
     window.scrollTo(0, 0);
@@ -76,10 +76,10 @@ const Products = () => {
 
 
   // chức năng phân trang
-  const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+  const handlePageChange = (_event: ChangeEvent<unknown>, page: number) => {
     setFilters(prevFilters => ({
       ...prevFilters,
-      page: page
+      page: page,
     }));
   }
 
@@ -93,21 +93,27 @@ const Products = () => {
   }
 
   return (
-    <section>
-      {cate && <SecTionCate cate={cate} />}
+    <section style={{ minHeight: "100vh" }}>
+      {isLoading ?
+        (<Loading />)
+        :
+        (
+          <>
+          {cate && <SecTionCate cate={cate} />}
+          <ProductSort onChange={handleSortChange} currentSort={filter.sortOrder} />
 
-      <ProductSort onChange={handleSortChange} currentSort={filter.sortOrder} />
-
-      <div className="banhSN-eat grid-4 bt mb-0-5px">
-        {products.map(item => (
-          <ProductItem key={item._id} Product={item} />
-        ))}
-      </div>
-
-      {pagination &&
-        <div style={{ display: "flex", justifyContent: "center", alignContent: "center", padding: "20px" }} className="">
-          <Pagination count={pagination.countPage} page={filter.page} onChange={handlePageChange} color="primary" />
-        </div>
+          <div className="banhSN-eat grid-4 bt mb-0-5px">
+            {products.map(item => (
+              <ProductItem key={item._id} Product={item} />
+            ))}
+          </div>
+          {pagination &&
+            <div style={{ display: "flex", justifyContent: "center", alignContent: "center", padding: "20px" }} className="">
+              <Pagination count={pagination.countPage} page={filter.page} onChange={handlePageChange} color="primary" />
+            </div>
+          }
+          </>
+        )
       }
     </section>
   );

@@ -3,7 +3,7 @@ import ProductHot from '../components/Home/ProductHot';
 import ListCateHome from '../components/Home/ListCate';
 
 const Home = () => {
-  
+    
   return (
    <>
   <Banner/>

@@ -24,6 +24,7 @@ const SignupPage = () => {
       
     }
   }
+
   return (
     <section className="" style={{ height: "auto" }}>
       <div className="about-left padding-top-bottom">

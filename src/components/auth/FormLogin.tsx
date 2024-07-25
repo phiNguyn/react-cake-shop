@@ -35,7 +35,7 @@ const schema = yup
 
   const [type, setType] = useState(false)
   const  handleType = () => {
-   setType(prevtype=> !prevtype)
+   setType(!type)
    console.log(type);
    
     }
@@ -52,7 +52,7 @@ const schema = yup
             <div className="form mt-4">
               <label htmlFor="password">Mật Khẩu</label>
               <input  {...register("pass", {required: true})}  className="input" id="password"  type={type ? "text" : "password" } />
-              <i onClick={handleType} className="password fa-regular fa-eye"></i>
+              <i onClick={handleType} className={`fa-regular  ye" : "fa-eye-slash"} password`}></i>
               <span className="input-border"></span>
               <small className="">{errors.pass?.message}</small>
               <div></div>
