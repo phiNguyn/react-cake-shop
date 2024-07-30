@@ -74,8 +74,8 @@ export const MobileMenu = () => {
                 <i  className="fa-solid fa-x"></i>
               </button>
             </div>
-            <ul>
               <h3>Sản Phẩm</h3>
+            <ul>
               <li className="" onClick={() => setOpen(false)} style={{ marginLeft: "20px", marginBottom: "20px" }}>
                 <Link to={'/products'}>Tất cả sản phẩm</Link></li>
               {categories.map((item) => (

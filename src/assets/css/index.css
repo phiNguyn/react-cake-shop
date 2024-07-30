@@ -583,7 +583,6 @@ footer {
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-  width: auto;
   width: 100%;
   height: 3rem;
   padding: 16px 24px;
@@ -731,16 +730,25 @@ footer {
 
 /* Phần giỏ hàng */
 
+
+
+.cart-page{
+ width: 1200px !important;
+ max-width: 100% !important;
+ margin:  0 auto;
+}
 .cart-left {
   margin: 0 auto;
-  width: 770px;
-  padding: 1rem 0;
+  width: 100%;
+  padding: 1rem ;
   display: flex;
   gap: 20px;
 }
 
 .cart-left img {
-  width: 180px;
+  width: 100px;
+  object-fit: fill;
+  height: 100px;
 }
 
 .cart-left .btn-icon {
@@ -751,17 +759,13 @@ footer {
 }
 
 .cart-left-content {
-  width: 360px;
+  width: fit-content;
   position: relative;
   display: flex;
   flex-direction: column;
-  gap: 20px;
 }
 
-.cart-left-content-btn {
-  position: absolute;
-  bottom: 0;
-}
+
 
 .cart-left .cart-left-last {
   margin-left: auto;

@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export const Banner = () => {
   return (
     <section className="banner">
-  <img className="banner-img-absolute" src="https://lafuong.com/_next/image?url=%2FLF_Cover.webp&w=1920&q=100" alt=""/>
+  <img className="banner-img-absolute" src="https://lafuong.com/_next/image?url=%2FLF_Cover.webp&w=1920&q=100" alt="banner"/>
 <div className="all-products-link">
     <Link to={'products'}><span>TẤT CẢ SẢN PHẨM</span></Link>
 </div>
@@ -40,7 +40,11 @@ export const Section1 = () => {
   return (
     <section className="about bt">
 <div className="about-left br">
-  <span className="about-left_text">IPUN LÀ</span>
+
+  
+ <span className="flex " style={{gap:"5px"}}>
+  <h1 className="about-left_text">IPUN </h1> <span style={{fontSize: "1.5rem"}}>  LÀ</span>
+  </span> 
   <h2 className="about-left_h2">Lựa chọn lý tưởng cho bánh ngọt chuẩn Pháp</h2>
   <p className="about-left_p">Dành nhiều tình cảm đặc biệt cho bánh ngọt Pháp, chúng tôi quyết tâm tạo nên thương hiệu Ipun để mang tới cho mọi người một trải nghiệm thưởng thức bánh thật tinh tế và tận tâm.</p>
   <p className="about-left_p">Hãy một lần nếm thử bánh của LaFuong để cảm nhận những tình cảm và nỗ lực của chúng tôi, tất cả nằm ở sự hoà quyện của hương vị và kết cấu đặc biệt trong từng chiếc bánh.</p>

@@ -14,7 +14,7 @@ const ButtonAddCart = ({Product}: {Product:Product}) => {
     }))
   }
   return (
-    <button onClick={handleAddToCart} className="add-fast add btn-buy" >Thêm sản phẩm</button>
+    <button onClick={handleAddToCart} className="add-fast add btn-buy btn-primary" >Thêm sản phẩm</button>
   )
 }
 

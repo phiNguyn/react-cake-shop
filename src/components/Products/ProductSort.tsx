@@ -10,7 +10,7 @@ const ProductSort:React.FC<ProductSortProps> = ({onChange,currentSort} ) => {
     }
   return (
     <div
-        className="arrange"
+
         style={{
           width: "fit-content",
           marginLeft: "auto",
@@ -19,7 +19,7 @@ const ProductSort:React.FC<ProductSortProps> = ({onChange,currentSort} ) => {
           gap: "20px",
         }}
       >
-        <select style={{ width: "fit-content" }} onChange={handelSortChange} value={currentSort}>
+        <select className="btn-primary" style={{ width: "fit-content" }} onChange={handelSortChange} value={currentSort}>
           <option value="default">Sắp theo giá sản phẩm</option>
           <option value="asc">Giá tăng dần</option>
           <option value="desc">Giá giảm dần</option>

@@ -52,13 +52,17 @@ const cartSlice = createSlice({
     },
 
     updateItem(state,action:PayloadAction<CartItem>) {
-      const p= action.payload
+      const p = action.payload
       const index = state.cartItems.findIndex(item=> item._id == p._id)
-      state.cartItems[index].quantity = Math.max(1, p.quantity)
+      state.cartItems[index].quantity = p.quantity
       return state
+    }
+,
+    removeCart(state) {
+      state.cartItems = []
     }
   },
 });
 
-export const { showMiniCart, hideMiniCart, addToCart, setQuantity, removeItem ,updateItem } = cartSlice.actions;
+export const { showMiniCart, hideMiniCart, addToCart, setQuantity, removeItem ,updateItem,removeCart } = cartSlice.actions;
 export default cartSlice.reducer;

@@ -71,7 +71,7 @@ export const FormSignup = ({ onSubmit }: FormLoginProps) => {
                     <label htmlFor="password">Mật Khẩu</label>
                     <input  {...register("pass", { required: true })} className="input" id="password" type={type ? "text" : "password" }  />
                     <span className="input-border"></span>
-              <i onClick={handleType} className="password fa-regular fa-eye"></i>
+              <i onClick={handleType} className={`fa-regular ${type ? " fa-eye" : "fa-eye-slash"}  password`}></i>
 
                     <small className="">{errors.pass?.message}</small>
                 </div>
@@ -79,7 +79,7 @@ export const FormSignup = ({ onSubmit }: FormLoginProps) => {
                     <label htmlFor="retypePass">Nhập lại mật khẩu</label>
                     <input id="retypePass" {...register("retypePass", { required: true })} className="input" type={reTypePass ? "text" : "password" }  />
                     <span className="input-border"></span>
-              <i onClick={handlReTypePass} className="password fa-regular fa-eye"></i>
+              <i onClick={handlReTypePass} className={`fa-regular ${reTypePass ? " fa-eye" : "fa-eye-slash"}  password`}></i>
 
                     <small className="">{errors.retypePass?.message}</small>
 

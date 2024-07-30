@@ -64,11 +64,12 @@ const SearchBar = () => {
                     onChange={(e) => handleChange(e.target.value)}
                     type="text"
                     id="serch_input"
-                  
+                    name="search_input"
+                    
                 />
                 <span className="input-border"></span>
-                <button onClick={onSearch} className="btn-search" type="button">
-                    <i className="fa-solid fa-magnifying-glass"></i>
+                <button onClick={onSearch} className="btn-search" type="button" name="btn-search">
+                    <i className="fa-solid fa-magnifying-glass fa-lg"></i>
                 </button>
               
                     <div

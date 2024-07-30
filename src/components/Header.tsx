@@ -6,11 +6,9 @@ import { useEffect, useState } from "react";
 import CheckLogin from "./auth/CheckLogin";
 import BasicMenu from "./Menu/BasicMenu";
 import { User } from "../interface/Users";
-import { cartCountSelector } from "../features/Cart/selector";
-import { useSelector } from "react-redux";
-import { Badge } from "@mui/material";
+import TemporaryDrawer from "./Cart/Open-Cart";
 const Header = () => {
-  const cartItemsCount = useSelector(cartCountSelector)
+  
   const [isLogin,setIsLogin] = useState<User| null>(null)
       useEffect(() => {
         const checkLogin = CheckLogin()
@@ -51,12 +49,8 @@ const Header = () => {
           
           <div className="header-order_link order"><Link to={'/products'}>ĐẶT BÁNH</Link></div>
           <div className="header-order_link cart">
-            <Link to={'/cart'} >
-            <Badge badgeContent={cartItemsCount} color="primary">
-               <span className="relative"><i className="fa-solid fa-cart-shopping fa-xl"></i> </span>
-    </Badge>
-              {/* <span className="relative"><i className="fa-solid fa-cart-shopping fa-xl"></i><span className="sl">{cartItemsCount}</span> </span> */}
-            </Link>
+        <TemporaryDrawer/>
+          
            
           </div>
         </div>
@@ -69,6 +63,7 @@ const Header = () => {
     <DesktopMenu/>
       <SearchBar/>   
     </div>
+   
   </header>
   
   )

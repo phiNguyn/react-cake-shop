@@ -6,7 +6,6 @@ export interface UserSignup {
     email: string
     pass: string
     name: string,
-    
     retypePass: string
 }
 
@@ -17,6 +16,6 @@ export interface User{
     email: string
     pass: string
     address: string
-    phone: number
+    phone: string
     role: string
 }

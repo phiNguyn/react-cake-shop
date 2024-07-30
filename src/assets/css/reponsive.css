@@ -8,9 +8,29 @@
   .banhSN-eat-more {
     padding: 0 18px 18px;
   }
+
+  .banh-ngon-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
   .add {
     padding: 8px 12px !important;
   }
+
+  /* cart */
+  .cart-page{
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;;
+  }
+
+.cart-right{
+    height: 250px;
+}
+
+/* checkout pay */
+.pay{
+  grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+}
+
 }
 @media screen and (max-width: 768px) {
   /* menu */
@@ -121,5 +141,16 @@
   .add {
     padding: 4px 6px !important;
     font-size: 14px;
+  }
+
+  /* cart page*/
+  .cart-left {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+  
+  /* checkout pay */
+  .grid-60-30-gap{
+    grid-template-columns: auto;
   }
 }
