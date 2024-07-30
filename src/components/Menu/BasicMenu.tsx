@@ -2,6 +2,7 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import StorageKeys from '../../constants/storage-keys';
 
 
 
@@ -16,7 +17,8 @@ export default function BasicMenu({name}: {name: string}) {
   };
   const logout = () => {
       setAnchorEl(null);
-    localStorage.clear()
+    localStorage.removeItem(StorageKeys.USER)
+    localStorage.removeItem(StorageKeys.TOKEN)
     setTimeout(() => {
         
         window.location.href= '/'
