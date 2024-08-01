@@ -54,7 +54,7 @@ const cartSlice = createSlice({
     updateItem(state,action:PayloadAction<CartItem>) {
       const p = action.payload
       const index = state.cartItems.findIndex(item=> item._id == p._id)
-      state.cartItems[index].quantity = p.quantity
+      state.cartItems[index].quantity = Math.max(1,p.quantity)
       return state
     }
 ,

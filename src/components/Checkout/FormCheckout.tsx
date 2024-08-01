@@ -10,7 +10,6 @@ import { Order } from "../../interface/order"
 import StorageKeys from "../../constants/storage-keys"
 import { User } from "../../interface/Users"
 import { Link } from "react-router-dom"
-import AlertDialog from "./ui/Confirm-Dialog"
 
 
 
@@ -62,6 +61,8 @@ const FormCheckout = ({ onSubmit }: FormOrder) => {
     }
 
     const itemCheckouts = useSelector(cartItemsSelector)
+  const totalCart = useSelector(cartTotalSelector)
+
     return (
         <form onSubmit={handleSubmit(dataOrder)} className="pay grid-2 bb">
 
@@ -104,7 +105,7 @@ const FormCheckout = ({ onSubmit }: FormOrder) => {
 
             {/* <app-address></app-address> */}
 
-            <div className="checkout-right bl">
+            <div className="checkout-right bl mb-5">
                 <h1>Giỏ hàng</h1>
                 <div id="checkout">
 
@@ -116,9 +117,8 @@ const FormCheckout = ({ onSubmit }: FormOrder) => {
                 </div>
                 <div className="tong grid-2">
                     <span>Tổng</span>
-                    <span>TOng</span>
+                    <span>{totalCart}</span>
                 </div>
-                <AlertDialog/>
                 <div className="w-full flex-center">
                     {user ? (
                         <button type="submit" className="add mt-6 btn-primary" style={{ width: "fit-content", margin: "0 auto" }}>

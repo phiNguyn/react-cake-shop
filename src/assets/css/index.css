@@ -698,16 +698,17 @@ footer {
   position: sticky;
   position: -webkit-sticky;
   top: 98.8px;
-  /* display: flex;
-    justify-content: center;
-    align-items: center; */
-  /* background-color: #f6f6f6; */
+ 
 }
 
 .checkout-right-box {
   width: 100%;
   padding: 2rem 0;
   display: flex;
+}
+.checkout-right-box img{
+  height: 100px;
+  width: 100px;
 }
 .checkout-right-name,
 .checkout-right-sl {

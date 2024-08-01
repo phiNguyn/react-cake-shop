@@ -176,6 +176,11 @@ td {
   background-color: var(--btn-primary);
   color: white;
 }
+
+.btn-qty{
+  width: 2rem;
+}
+
 .h-100vh {
   height: 100vh;
 }
@@ -208,4 +213,8 @@ td {
 .py-5{
   padding-left: 20px;
   padding-right:20px ;
+}
+
+.input-num {
+  width:50px;
 }

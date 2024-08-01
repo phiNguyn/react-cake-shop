@@ -30,6 +30,13 @@
 .pay{
   grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
 }
+.checkout-left{
+  position: relative;
+  height: auto;
+  top: 0;
+  
+
+}
 
 }
 @media screen and (max-width: 768px) {
@@ -146,11 +153,17 @@
   /* cart page*/
   .cart-left {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    grid-template-columns: 70% 30% !important;
+    gap: 0 !important;
   }
   
   /* checkout pay */
   .grid-60-30-gap{
     grid-template-columns: auto;
   }
+  .checkout-right-name, .checkout-right-sl {
+
+    font-size: 1rem;
+  }
+  
 }

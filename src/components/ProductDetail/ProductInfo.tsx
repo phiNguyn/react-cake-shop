@@ -49,7 +49,7 @@ const ProductInfo = ({ productDetail }: { productDetail: Product }) => {
             className="number"
             onChange={handleChangeValue}
           />
-          <button   onClick={() => setQuantity(Math.min(5, quantity + 1))} className="plus btn">+</button>
+          <button onClick={() => setQuantity(Math.min(5, quantity + 1))} className="plus btn">+</button>
         </span>
         <button
           onClick={handleAddToCart} // Đảm bảo gọi hàm thay vì truyền tham chiếu
