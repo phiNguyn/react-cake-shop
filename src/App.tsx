@@ -64,11 +64,8 @@ function App() {
 
 
           <Route path='/product/:slug' element={
-            <>
             <ProductDetail />
-            <PageTitle title='name' />
-
-            </>
+            
             } />
           <Route path='/sign-in' element={<Signin />} />
           <Route path='/sign-up' element={<SignupPage />} />

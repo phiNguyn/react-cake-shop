@@ -10,6 +10,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import '../assets/swiper.css'
 import ProductInfo from "../components/ProductDetail/ProductInfo";
+import PageTitle from "../components/PageTitle";
 // Import Swiper styles
 
 interface photo {
@@ -19,7 +20,7 @@ interface photo {
 }
 const ProductDetail = () => {
   const { slug } = useParams();
-  const [productDetail, setProductDetail] = useState<Product | null>(null)
+  const [productDetail, setProductDetail] = useState<Product>()
   const [loading, setLoading] = useState(true)
   const [photo, setPhoto] = useState<photo[]>([])
   // 
@@ -81,6 +82,8 @@ const ProductDetail = () => {
 
   return (
     <section className="grid-2 detail" id="pro-detail" >
+              <PageTitle title={productDetail!.name} />
+      
         <>
           {productDetail && (
             <>
