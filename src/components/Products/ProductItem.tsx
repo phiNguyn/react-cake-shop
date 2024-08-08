@@ -8,7 +8,7 @@ const link = import.meta.env.VITE_API_IMAGES
 const ProductItem = ({Product} : {Product: Product}) => {
 
   return (
-     <div key={Product._id}   className="relative bb br  banhSN-eat-link" >
+     <div key={Product._id}   className="relative bb br  banhSN-eat-link">
           <div className="banhSN-eat-list">
             <Link to={`/product/${Product.slug}`}>
             <div  className="banhSN-eat-h2">{Product.name}</div>

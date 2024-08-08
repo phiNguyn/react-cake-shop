@@ -32,7 +32,7 @@ export default function BasicMenu({name}: {name: string}) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        color='success'
+        style={{color: 'black'}}
       >
        
       Hello {name}

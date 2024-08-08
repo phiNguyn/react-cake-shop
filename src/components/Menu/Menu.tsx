@@ -50,7 +50,8 @@ export const MobileMenu = () => {
 
   }, [])
   const logout = () => {
-    localStorage.clear()
+    localStorage.removeItem('userData')
+    localStorage.removeItem('access_token')
     setTimeout(() => {
 
       window.location.href = '/'

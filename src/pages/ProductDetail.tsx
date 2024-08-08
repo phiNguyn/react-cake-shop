@@ -11,6 +11,7 @@ import 'swiper/css/pagination';
 import '../assets/swiper.css'
 import ProductInfo from "../components/ProductDetail/ProductInfo";
 import PageTitle from "../components/PageTitle";
+import BasicTabs from "../components/ProductDetail/Tabs";
 // Import Swiper styles
 
 interface photo {
@@ -23,14 +24,17 @@ const ProductDetail = () => {
   const [productDetail, setProductDetail] = useState<Product>()
   const [loading, setLoading] = useState(true)
   const [photo, setPhoto] = useState<photo[]>([])
+  const [relatedProducts,setRelatedProducts ] = useState([])
   // 
   useEffect(() => {
     const fetchDetail = async () => {
       setLoading(true)
       try {
         const resp = await getProductDetail(slug)
-
+        console.log(resp?.data);
+        
         setProductDetail(resp?.data?.result)
+        setRelatedProducts(resp?.data.relatedProducts  )
         const photos = resp?.data?.photos;
         const mainImage = resp?.data.result.img
 
@@ -81,8 +85,9 @@ const ProductDetail = () => {
   }
 
   return (
+    <>
     <section className="grid-2 detail" id="pro-detail" >
-              <PageTitle title={productDetail!.name} />
+       <PageTitle title={productDetail!.name} />
       
         <>
           {productDetail && (
@@ -112,8 +117,10 @@ const ProductDetail = () => {
             </>
           )}
         </>
-     
-    </section>
+    </section>  
+    <BasicTabs products={relatedProducts}/>
+    
+    </>
   )
 }
 
