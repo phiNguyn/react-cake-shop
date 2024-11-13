@@ -4,9 +4,10 @@ const API_URL = import.meta.env.VITE_API_URL
 
 
  const newOrder = (body: Order) => {
-    return axios.post(API_URL+'/order',body)
+    return axios.post(API_URL+'/orders',body)
 }
 const MOMO = (body: {_id ?: string , total_amount ?: number}) => {
+    
     return axios.post(API_URL+'/momo/payment',body)
 }
 

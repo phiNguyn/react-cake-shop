@@ -10,6 +10,7 @@ import { Order } from "../../interface/order"
 import StorageKeys from "../../constants/storage-keys"
 import { User } from "../../interface/Users"
 import { Link } from "react-router-dom"
+import { FormControl, FormControlLabel, FormLabel, Radio, RadioGroup } from "@mui/material"
 
 
 
@@ -22,14 +23,14 @@ const schema = yup.object({
     user_id: yup.string(),
     order_status: yup.number(),
     total_amount: yup.number(),
-    type_payment: yup.number()
+    type_payment: yup.number().optional()
 }).required()
 
 interface FormOrder {
     onSubmit: (data: Order) => void;
 }
 const FormCheckout = ({ onSubmit }: FormOrder) => {
-    const total_amount  = useSelector(cartTotalSelector)
+    const total_amount = useSelector(cartTotalSelector)
 
     const user = localStorage.getItem(StorageKeys.USER)
     let userData: Partial<User> = {};
@@ -51,7 +52,6 @@ const FormCheckout = ({ onSubmit }: FormOrder) => {
             phone: userData.phone || "",
             order_status: 1,
             total_amount: total_amount,
-            type_payment: 1
         },
         resolver: yupResolver(schema),
     })
@@ -61,7 +61,7 @@ const FormCheckout = ({ onSubmit }: FormOrder) => {
     }
 
     const itemCheckouts = useSelector(cartItemsSelector)
-  const totalCart = useSelector(cartTotalSelector)
+    const totalCart = useSelector(cartTotalSelector)
 
     return (
         <form onSubmit={handleSubmit(dataOrder)} className="pay grid-2 bb">
@@ -100,6 +100,18 @@ const FormCheckout = ({ onSubmit }: FormOrder) => {
                     </div>
 
                 </div>
+                <FormControl>
+                    <FormLabel id="demo-radio-buttons-group-label" style={{ marginTop: '20px' }}>Chọn phương thức thanh toán</FormLabel>
+                    <RadioGroup
+                        aria-labelledby="demo-radio-buttons-group-label"
+                        defaultValue="female"
+                        name="radio-buttons-group"
+                    >
+                        <FormControlLabel {...register("type_payment", { required: true })} value={2} control={<Radio />} label="Thanh toán bằng momo" />
+
+                    </RadioGroup>
+                </FormControl>
+                <small className="">{errors.type_payment?.message}</small>
 
             </div>
 
@@ -121,12 +133,16 @@ const FormCheckout = ({ onSubmit }: FormOrder) => {
                 </div>
                 <div className="w-full flex-center">
                     {user ? (
-                        <button type="submit" className="add mt-6 btn-primary" style={{ width: "fit-content", margin: "0 auto" }}>
-                            Đặt hàng
+                        total_amount == 0 ? <button type="button" className="add mt-6 btn-primary" style={{ width: "fit-content", margin: "0 auto" }}>
+                            Giỏ hàng chưa có sản phẩm
                         </button>
+                            :
+                            <button type="submit" className="add mt-6 btn-primary" style={{ width: "fit-content", margin: "0 auto" }}>
+                                Đặt hàng
+                            </button>
 
                     ) : (
-                        <Link to={'/sign-in'}  className="add mt-6 btn-primary" style={{ width: "fit-content" }}>
+                        <Link to={'/sign-in'} className="add mt-6 btn-primary" style={{ width: "fit-content" }}>
                             Đăng nhập để mua hàng
                         </Link>
 
