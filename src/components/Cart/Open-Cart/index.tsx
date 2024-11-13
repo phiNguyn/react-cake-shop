@@ -19,7 +19,7 @@ export default function TemporaryDrawer() {
   };
 
   const DrawerList = (
-    <Box sx={{ width: "100%" , p: 3 }} role="presentation" >
+    <Box sx={{ width: "100%" , p: 2}} role="presentation" >
     <div className="flex jus-between py-5">
       <p>Giỏ hàng</p>
       <Button  size='large' variant='contained' color='info' onClick={toggleDrawer(false)}><i className="fa-solid fa-x"></i></Button>

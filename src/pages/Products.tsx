@@ -103,7 +103,7 @@ const Products = () => {
           <ProductSort onChange={handleSortChange} currentSort={filter.sortOrder} />
 
           <div className="banhSN-eat grid-4 bt mb-0-5px">
-            {products.map(item => (
+            {products?.map(item => (
               <ProductItem key={item._id} Product={item} />
             ))}
           </div>

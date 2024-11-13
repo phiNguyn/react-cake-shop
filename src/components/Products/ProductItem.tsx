@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom"
+import {  useNavigate } from "react-router-dom"
 import { Product } from '../../interface/product';
 
 import ButtonAddCart from "../ui/ButtonAddCart";
@@ -6,15 +6,19 @@ const link = import.meta.env.VITE_API_IMAGES
 
 
 const ProductItem = ({Product} : {Product: Product}) => {
+  const naviga = useNavigate()
 
+  const handleClick = async (slug: string) => {
+       naviga(`/product/${slug}`)
+  }
   return (
      <div key={Product._id}   className="relative bb br  banhSN-eat-link">
           <div className="banhSN-eat-list">
-            <Link to={`/product/${Product.slug}`}>
+            <div style={{cursor: 'pointer'}} onClick={() => handleClick(Product.slug)}>
             <div  className="banhSN-eat-h2">{Product.name}</div>
             <div className="banhSN-eat-name">{Product.material}</div>
             <div className="banhSN-eat-prce">{Product.price} ₫</div>
-            </Link>
+            </div>
           </div>
           <div className="banhSN-eat-img relative pb-100">
             <div className="banhSN-eat-img-item">

@@ -1,6 +1,6 @@
 import toast from "react-hot-toast";
 import FormCheckout from "../components/Checkout/FormCheckout"
-import { newItem, newOrder } from "../data/Order";
+import { MOMO, newItem, newOrder } from "../data/Order";
 import { Order } from '../interface/order';
 import { Toaster }from 'react-hot-toast';
 import { useDispatch, useSelector } from "react-redux";
@@ -38,7 +38,10 @@ const Checkout = () => {
               
                dispatch(removeCart())
              }, 500);
-
+            const momoOrder = {
+              _id : _id , total_amount : data.total_amount
+            }
+          MOMO(momoOrder)    
       }else{
         toast.error(resp.data.message)
 
