@@ -6,10 +6,8 @@ import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from "react-redux";
 import { cartItemsSelector } from "../features/Cart/selector";
 import { removeCart } from "../features/Cart/cartSlice";
-import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
-  const navigate = useNavigate()
   const orderItems = useSelector(cartItemsSelector)
   const dispatch = useDispatch()
   const handleSubmitOrder = async (data: Order) => {
