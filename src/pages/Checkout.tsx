@@ -6,10 +6,13 @@ import { Toaster } from 'react-hot-toast';
 import { useDispatch, useSelector } from "react-redux";
 import { cartItemsSelector } from "../features/Cart/selector";
 import { removeCart } from "../features/Cart/cartSlice";
+import { useNavigate, useParams } from "react-router-dom";
 
 const Checkout = () => {
   const orderItems = useSelector(cartItemsSelector)
   const dispatch = useDispatch()
+  const { resultCode } = useParams()
+  const navigate = useNavigate()
   const handleSubmitOrder = async (data: Order) => {
     console.log(data);
 
@@ -37,15 +40,21 @@ const Checkout = () => {
         }
 
         toast.success(resp.data.message)
-        setTimeout(() => {
-
-          dispatch(removeCart())
-        }, 500);
 
 
 
         const res = await MOMO(momoOrder)
         window.location.href = res.data.shortLink
+
+        if (resultCode == String(0)) {
+          dispatch(removeCart())
+          navigate('/products')
+          // setTimeout(() => {
+
+          // }, 200);
+        } else {
+          navigate('/cart')
+        }
 
       } else {
         toast.error(resp.data.message)
