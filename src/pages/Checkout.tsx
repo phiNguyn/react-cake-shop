@@ -53,7 +53,7 @@ const Checkout = () => {
 
           // }, 200);
         } else {
-          navigate('/cart')
+          navigate('/checkout')
         }
 
       } else {
