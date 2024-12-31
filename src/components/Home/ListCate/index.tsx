@@ -26,7 +26,7 @@ const ListCateHome = () => {
                 <ul className="product grid-3" id="listCategory">
                     {Category.map(cate => (
                         <li key={cate._id} className="product-item br">
-                            <Link to={`/products/${cate._id}`}>
+                            <Link to={`/products?categoryId=${cate._id}`}>
                                 <h2 className="product-item_type">{cate.name}</h2>
                                 <p className="product-text">{cate.mota}</p>
                                 <img src={`${APIKEYS.IMAGES}/${cate.img}`} alt="" />

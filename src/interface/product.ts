@@ -25,7 +25,7 @@ export interface pagination {
 
 export interface ResponseProduct {
   result: Product[];
-  panigation: pagination;
+  pagination: pagination;
 }
 
 export interface ResponseProductDetails {

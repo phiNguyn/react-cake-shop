@@ -3,7 +3,7 @@ import { Link } from "react-router-dom"
 export const Banner = () => {
   return (
     <section className="banner">
-  <img className="banner-img-absolute" src="https://lafuong.com/_next/image?url=%2FLF_Cover.webp&w=1920&q=100" alt="banner"/>
+  <img className="banner-img-absolute" src="https://images.prismic.io/lf-web/Z0Cukq8jQArT1N8p_LF_XMAS_2024_WEBSITE-COVER.png?auto=format%2Ccompress&width=1920&height=1920&q=80&fit=max&w=1920" alt="banner"/>
 <div className="all-products-link">
     <Link to={'products'}><span>TẤT CẢ SẢN PHẨM</span></Link>
 </div>

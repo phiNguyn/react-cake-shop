@@ -1,21 +1,21 @@
 import { useState, useEffect, ChangeEvent } from "react";
 import Pagination from '@mui/material/Pagination';
 import ProductItem from "../components/Products/ProductItem";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import SecTionCate from "../components/Products/SecTionCate";
 import ProductSort from '../components/Products/ProductSort';
 import Loading from "../common/Loader";
 import { useProductStore } from "../store/Product";
 import { useQuery } from "@tanstack/react-query";
 import ProductAPI from "../data/ProductsData";
+import { getCategoryById } from "../data/Categories";
+import { Category } from "../interface/category";
 
 const Products = () => {
   const [searchParams] = useSearchParams();
   const categoryId = searchParams.get("categoryId");
   const q = searchParams.get("q");
-
-  // const [cate, setCate] = useState<Category | null>(null);
-
+  const [cate, setCate] = useState<Category | null>(null);
 
 
   const { filters, setFilters } = useProductStore((state) => state)
@@ -25,11 +25,22 @@ const Products = () => {
       ProductAPI.ProductsList({
         ...filters, ...(q && { q }), ...(categoryId && { categoryId })
       }),
-    staleTime: 60 * 1000,
+    staleTime: 5 * 60 * 1000,
 
   })
 
+  const { data: DataCate } = useQuery({
+    queryKey: ['categoryId', categoryId],
+    queryFn: () => getCategoryById(categoryId),
+    staleTime: 5 * 60 * 1000,
 
+  })
+
+  useEffect(() => {
+    if (DataCate) {
+      setCate(DataCate)
+    }
+  }, [DataCate])
 
 
 
@@ -69,8 +80,7 @@ const Products = () => {
   //   fetchProducts();
   //   window.scrollTo(0, 0);
   // }, [categoryId, q, filter, pathname]);
-
-  // chức năng phân trang
+ 
   const handlePageChange = (_event: ChangeEvent<unknown>, page: number) => {
     setFilters({
       ...filters,
@@ -93,7 +103,7 @@ const Products = () => {
         :
         (
           <>
-            {/* {cate && <SecTionCate cate={cate} />} */}
+            {cate && <SecTionCate cate={cate} />}
             <ProductSort onChange={handleSortChange} currentSort={filters?.sortOrder} />
 
             <div className="banhSN-eat grid-4 bt mb-0-5px">
@@ -103,8 +113,8 @@ const Products = () => {
             </div>
 
             <div style={{ display: "flex", justifyContent: "center", alignContent: "center", padding: "20px" }} className="">
-              {data?.panigation &&
-                <Pagination count={data.panigation.countPage} page={data.panigation.currentPage} onChange={handlePageChange} color="primary" />
+              {data?.pagination &&
+                <Pagination count={data.pagination.countPage} page={data.pagination.currentPage} onChange={handlePageChange} color="primary" />
               }
             </div>
           </>
