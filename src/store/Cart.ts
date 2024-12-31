@@ -35,7 +35,7 @@ export const useCartStore = create<CartState>()(
 
           if (index >= 0) {
             updatedCartItems = [...state.cartItems];
-            updatedCartItems[index].quantity += newItem.quantity;
+            updatedCartItems[index].quantity = newItem.quantity;
           } else {
             updatedCartItems = [...state.cartItems, newItem];
           }
