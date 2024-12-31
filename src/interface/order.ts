@@ -5,7 +5,7 @@ export interface Order{
     address: string
     phone: string
     total_amount?: number
-    type_payment?: number
+    type_payment: number
     order_status?: number
 
     
