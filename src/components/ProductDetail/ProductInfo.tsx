@@ -1,34 +1,26 @@
 import { Link } from "react-router-dom";
 import { Product } from "../../interface/product";
-import { useDispatch } from "react-redux";
-import { addToCart } from "../../features/Cart/cartSlice";
+import { useCartStore } from '../../store/Cart';
 import { useState } from "react";
 
 const ProductInfo = ({ productDetail }: { productDetail: Product }) => {
-  const dispatch = useDispatch();
   const [quantity, setQuantity] = useState<number>(1)
-
+  const addToCart = useCartStore((state) => state.addToCart)
   const handleChangeValue = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = parseInt(e.target.value,10)
+    const value = parseInt(e.target.value, 10)
     setQuantity(value)
 
   }
-
   const handleAddToCart = () => {
-    // Tạo đối tượng CartItem
-    
-
-   const action = {
-    quantity: quantity,
-    _id: productDetail._id,
-   price: productDetail.price,
-   product: productDetail
-   }
-    dispatch(addToCart(action));
+    const action = {
+      quantity: quantity,
+      _id: productDetail._id,
+      price: productDetail.price,
+      product: productDetail
+    }
+    addToCart(action)
     setQuantity(1)
-
   };
-
   return (
     <div className="detai-right bb">
       <div className="detai-right-tag">
@@ -39,7 +31,7 @@ const ProductInfo = ({ productDetail }: { productDetail: Product }) => {
       <h1>{productDetail.name}</h1>
       <div className="detai-right-btn" id="detai-right">
         <span className="flex mr-4">
-          <button  onClick={() => setQuantity(Math.max(1, quantity - 1))} className="minus btn">-</button>
+          <button onClick={() => setQuantity(Math.max(1, quantity - 1))} className="minus btn">-</button>
           <input
             type="number"
             value={quantity}

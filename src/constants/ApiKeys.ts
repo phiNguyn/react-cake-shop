@@ -1,5 +1,5 @@
 const APIKEYS = {
-    IMAGES: 'https://cake-ipun.vercel.app/images'
-
-}
-export default APIKEYS
+  IMAGES: import.meta.env.VITE_API_IMAGES,
+  url: import.meta.env.VITE_API_URL,
+};
+export default APIKEYS;

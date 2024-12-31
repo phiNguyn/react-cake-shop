@@ -6,7 +6,7 @@ import StorageKeys from '../../constants/storage-keys';
 
 
 
-export default function BasicMenu({name}: {name: string}) {
+export default function BasicMenu({ name }: { name: string }) {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -16,12 +16,12 @@ export default function BasicMenu({name}: {name: string}) {
     setAnchorEl(null);
   };
   const logout = () => {
-      setAnchorEl(null);
+    setAnchorEl(null);
     localStorage.removeItem(StorageKeys.USER)
     localStorage.removeItem(StorageKeys.TOKEN)
     setTimeout(() => {
-        
-        window.location.href= '/'
+
+      window.location.href = '/'
     }, 1000);
   }
   return (
@@ -32,10 +32,10 @@ export default function BasicMenu({name}: {name: string}) {
         aria-haspopup="true"
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
-        style={{color: 'black'}}
+        style={{ color: 'black' }}
       >
-       
-      Hello {name}
+
+        Hello {name}
       </Button>
       <Menu
         id="basic-menu"

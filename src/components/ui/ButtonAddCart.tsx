@@ -1,17 +1,16 @@
-import { useDispatch } from "react-redux"
-import { addToCart } from '../../features/Cart/cartSlice';
 import { Product } from '../../interface/product';
+import { useCartStore } from '../../store/Cart';
 
-const ButtonAddCart = ({Product}: {Product:Product}) => {
-    const dispatch = useDispatch()
+const ButtonAddCart = ({ Product }: { Product: Product }) => {
+  const { addToCart } = useCartStore((state) => state)
   const handleAddToCart = () => {
-    
-    dispatch(addToCart({
+    addToCart({
       _id: Product._id,
-      quantity: 1,
       price: Product.price,
+      quantity: 1,
       product: Product
-    }))
+    })
+
   }
   return (
     <button onClick={handleAddToCart} className="add-fast add btn-buy btn-primary" >Thêm sản phẩm</button>

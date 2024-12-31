@@ -1,38 +1,37 @@
 import { useEffect, useState } from "react"
-import { Category } from "../../interface/category"
 import { getCategories } from "../../data/Categories"
-import { Link, NavLink } from "react-router-dom"
+import { Link, useSearchParams } from "react-router-dom"
 import CheckLogin from "../auth/CheckLogin"
 import { User } from "../../interface/Users"
+import { useCategoryStore } from "../../store/Category"
+import { useQuery } from "@tanstack/react-query"
+import StorageKeys from "../../constants/storage-keys"
 
 
 const useCategory = () => {
-  const [categories, setCategories] = useState<Category[]>([])
+  const { Category, setCategory } = useCategoryStore((state) => state)
+  const { data, } = useQuery({
+    queryKey: ['categories'],
+    queryFn: getCategories,
+    staleTime: 10 * 60 * 1000
+  })
   useEffect(() => {
-    const fetch = async () => {
-      try {
-        const resp = await getCategories()
-        setCategories(resp?.data)
-      } catch (error) {
-        console.log(error);
-
-      }
+    if (data) {
+      setCategory(data)
     }
-    fetch()
-
-
-  }, [])
-  return categories;
+  }, [data, setCategory])
+  return Category;
 }
 
 export const DesktopMenu = () => {
-
+  const [searchParams] = useSearchParams();
+  const categoryId = searchParams.get("categoryId");
   const categories = useCategory()
   return (
     <div className="flex slide-list">
       {categories.map((item) => (
         <span key={item._id}>
-          <NavLink to={`/products/${item._id}`} >{item.name}</NavLink>
+          <Link className={`${item._id == categoryId ? 'active' : ""}`} to={`/products?categoryId=${item._id}`} >{item.name}</Link>
         </span>
       ))}
     </div>
@@ -50,10 +49,9 @@ export const MobileMenu = () => {
 
   }, [])
   const logout = () => {
-    localStorage.removeItem('userData')
-    localStorage.removeItem('access_token')
+    localStorage.removeItem(StorageKeys.USER)
+    localStorage.removeItem(StorageKeys.TOKEN)
     setTimeout(() => {
-
       window.location.href = '/'
     }, 500);
   }
@@ -71,18 +69,18 @@ export const MobileMenu = () => {
               style={{
               }}>
               <h1>Menu</h1>
-              <button onClick={() => setOpen(false)}  className="add w-fit-content">
-                <i  className="fa-solid fa-x"></i>
+              <button onClick={() => setOpen(false)} className="add w-fit-content">
+                <i className="fa-solid fa-x"></i>
               </button>
             </div>
-              <h3>Sản Phẩm</h3>
+            <h3>Sản Phẩm</h3>
             <ul>
               <li className="" onClick={() => setOpen(false)} style={{ marginLeft: "20px", marginBottom: "20px" }}>
                 <Link to={'/products'}>Tất cả sản phẩm</Link></li>
               {categories.map((item) => (
                 <li className="flex item-center jus-between mb-5 ml-5"
                   key={item._id}>
-                  <Link to={`/products/${item._id}`} onClick={() => setOpen(false)}>{item.name}</Link>
+                  <Link to={`/products?categoryId=${item._id}`} onClick={() => setOpen(false)}>{item.name}</Link>
                   <i className="fa-solid fa-arrow-right" style={{ rotate: "-45deg" }}></i>
                 </li>
               ))}

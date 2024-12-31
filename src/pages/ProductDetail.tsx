@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 
 import { Product } from '../interface/product';
-import { getProductDetail } from "../data/ProductsData";
 import Loading from "../common/Loader";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination } from 'swiper/modules';
@@ -12,56 +11,59 @@ import '../assets/swiper.css'
 import ProductInfo from "../components/ProductDetail/ProductInfo";
 import PageTitle from "../components/PageTitle";
 import BasicTabs from "../components/ProductDetail/Tabs";
+import ProductAPI from "../data/ProductsData";
+import { useQuery } from "@tanstack/react-query";
+import APIKEYS from "../constants/ApiKeys";
 // Import Swiper styles
 
-interface photo {
+export interface photo {
   nameImage: string,
-  productId: string,
-  _id: string
+  productId?: string,
+  _id?: string
 }
 const ProductDetail = () => {
+
   const { slug } = useParams();
-  const [productDetail, setProductDetail] = useState<Product>()
-  const [loading, setLoading] = useState(true)
-  const [photo, setPhoto] = useState<photo[]>([])
-  const [relatedProducts,setRelatedProducts ] = useState([])
+  const [photo, setPhoto] = useState<photo[] | []>([])
+  const [relatedProducts, setRelatedProducts] = useState<Product[] | []>([])
   // 
+  const { data, isLoading } = useQuery({
+    queryKey: ['productDetail', slug],
+    queryFn: () => ProductAPI.getProductDetail(slug),
+    staleTime: 5 * 60 * 1000
+  })
   useEffect(() => {
     const fetchDetail = async () => {
-      setLoading(true)
       try {
-        const resp = await getProductDetail(slug)
-        console.log(resp?.data);
-        
-        setProductDetail(resp?.data?.result)
-        setRelatedProducts(resp?.data.relatedProducts  )
-        const photos = resp?.data?.photos;
-        const mainImage = resp?.data.result.img
+        if (data) {
 
-        if (photos.length > 0) {
-          const updatePhoto = [{ nameImage: mainImage }, ...photos]
-          setPhoto(updatePhoto)
+          setRelatedProducts(data.relatedProducts)
+          const photos = data.photos;
+          const mainImage = data.result.img
 
-        } else {
-          setPhoto(photos)
+          if (photos.length > 0) {
+            const updatePhoto = [{ nameImage: mainImage }, ...photos]
+            setPhoto(updatePhoto)
+
+          } else {
+            setPhoto(photos)
+
+          }
 
         }
 
-
       } catch (error) {
         console.log(error);
-
       }
-      setLoading(false)
     }
     fetchDetail()
 
-  }, [slug])
+  }, [data])
 
 
   // Chuyển đổi các phần tử React thành chuỗi HTML
   const imgHTML = photo.map(photo => (
-    `<img  src="${import.meta.env.VITE_API_IMAGES}/${photo.nameImage}" alt="" />`
+    `<img  src="${APIKEYS.IMAGES}/${photo.nameImage}" alt="" />`
   ));
 
   const pagination = {
@@ -76,21 +78,21 @@ const ProductDetail = () => {
     }
   };
 
-  
 
-  if(loading) {
-    return  <div className="h-100vh ">
-    <Loading />
-  </div>
+
+  if (isLoading) {
+    return <div className="h-100vh ">
+      <Loading />
+    </div>
   }
 
   return (
     <>
-    <section className="grid-2 detail" id="pro-detail" >
-       <PageTitle title={productDetail!.name} />
-      
+      <section className="grid-2 detail" id="pro-detail" >
+        <PageTitle title={data?.result.name} />
+
         <>
-          {productDetail && (
+          {data?.result && (
             <>
               <div className="detail-left br bb">
                 {photo.length ? (
@@ -108,18 +110,18 @@ const ProductDetail = () => {
 
                 ) : (
                   <div className="relative detail-left-item">
-                    <img src={`${import.meta.env.VITE_API_IMAGES}/${productDetail.img}`} alt="" id="anh" />
+                    <img src={`${import.meta.env.VITE_API_IMAGES}/${data.result.img}`} alt="" id="anh" />
                   </div>
                 )}
 
               </div>
-              <ProductInfo productDetail={productDetail} />
+              <ProductInfo productDetail={data.result} />
             </>
           )}
         </>
-    </section>  
-    <BasicTabs products={relatedProducts}/>
-    
+      </section>
+      <BasicTabs products={relatedProducts} />
+
     </>
   )
 }

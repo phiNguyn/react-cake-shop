@@ -1,38 +1,44 @@
 import axios from "axios";
+import APIKEYS from "../constants/ApiKeys";
 
+// Tạo instance axios
 const axiosClient = axios.create({
+  baseURL: APIKEYS.url,
+  headers: {
+    "Content-Type": "application/json", // Đặt content-type mặc định
+  },
+  timeout: 10000, // Thời gian chờ cho mỗi yêu cầu (10 giây)
+});
 
-    baseURL: import.meta.env.VITE_API_URL,
-    headers: {
-        'Content-Type': 'application/json'
+// Interceptor cho request để thêm token (nếu cần)
+axiosClient.interceptors.request.use(
+  (config) => {
+    // Lấy token từ localStorage hoặc bất kỳ phương pháp lưu trữ nào
+    const token = localStorage.getItem("token");
 
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`; // Thêm token vào header Authorization
     }
-})
 
-// Add a request interceptor
-axios.interceptors.request.use(function (config) {
-    // Do something before request is sent
     return config;
-  }, function (error) {
-    // Do something with request error
+  },
+  (error) => {
+    // Xử lý lỗi trước khi gửi request
     return Promise.reject(error);
-  });
+  }
+);
 
-// Add a response interceptor
-axios.interceptors.response.use(function (response) {
-    // Any status code that lie within the range of 2xx cause this function to trigger
-    // Do something with response data
-    return response;
-  }, function (error) {
-    // Any status codes that falls outside the range of 2xx cause this function to trigger
-    // Do something with response error
-    console.log('loi o day ',error.response);
-        const {config,status, data} = error.response
-        if(config.url == '/uses/' && status == 400) {
-            throw new Error(data.message)
-        }
+// Interceptor cho response để xử lý kết quả hoặc lỗi
+axiosClient.interceptors.response.use(
+  (response) => {
+    // Xử lý response thành công
+    return response; // Trả về dữ liệu đã xử lý
+  },
+  (error) => {
+    // Xử lý response lỗi
+
     return Promise.reject(error);
-  });
+  }
+);
 
-  
-export default axiosClient
+export default axiosClient;

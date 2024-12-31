@@ -1,25 +1,22 @@
-import { useState, useEffect } from "react"
-import { Product } from '../../interface/product';
-import { productsHotData } from "../../data/ProductsData"
+import { useEffect } from "react"
 import ProductItem from "../Products/ProductItem"
+import { useProductStore } from "../../store/Product";
+import { useQuery } from "@tanstack/react-query";
+import ProductAPI from "../../data/ProductsData";
+import Loading from "../../common/Loader";
 const ProductHot = () => {
-  const [productHot, setProductHot] = useState<Product[]>([])
+  const { Product, setProduct } = useProductStore((state) => state)
+  const { data, isLoading } = useQuery({
+    queryKey: ['productHot'],
+    queryFn: ProductAPI.productsHotData,
+    staleTime: 60 * 1000,
+
+  })
   useEffect(() => {
-    const fetchProHot = async () => {
-      try {
-        const resp = await productsHotData()
-
-        setProductHot(resp?.data)
-        console.log(resp?.data);
-
-      } catch (error) {
-        console.log(error);
-
-      }
+    if (data) {
+      setProduct(data)
     }
-    fetchProHot()
-  }, [])
-
+  }, [data, setProduct])
   return (
     <section className="noibat bt">
       <div className="mota">
@@ -30,13 +27,13 @@ const ProductHot = () => {
         </div>
       </div>
 
-
-      <div className="banh-ngon-list grid-4">
-        {productHot.map((item) => (
-          <ProductItem key={item._id} Product={item}/>
-        ))}
-      </div>
-
+      {isLoading ? <Loading /> :
+        <div className="banh-ngon-list grid-4">
+          {Product.map((item) => (
+            <ProductItem key={item._id} Product={item} />
+          ))}
+        </div>
+      }
     </section>
   )
 }

@@ -2,7 +2,7 @@ import {  useNavigate } from "react-router-dom"
 import { Product } from '../../interface/product';
 
 import ButtonAddCart from "../ui/ButtonAddCart";
-const link = import.meta.env.VITE_API_IMAGES
+import APIKEYS from "../../constants/ApiKeys";
 
 
 const ProductItem = ({Product} : {Product: Product}) => {
@@ -22,7 +22,7 @@ const ProductItem = ({Product} : {Product: Product}) => {
           </div>
           <div className="banhSN-eat-img relative pb-100">
             <div className="banhSN-eat-img-item">
-              <img loading="lazy" src={`${link}/${Product.img}`} alt={Product.name}/>
+              <img loading="lazy" src={`${APIKEYS.IMAGES}/${Product.img}`} alt={Product.name}/>
             </div>
           </div>
           <input type="hidden"/>
